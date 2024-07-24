@@ -1,0 +1,46 @@
+nav:
+  - Home: README.md
+  - Guides:
+      - Installation: guides/installation.md
+      - General Usage: guides/general_usage.md
+      - Inline Ignore: guides/inline_ignore.md
+  - Explanations:
+      - Motivation: explanations/motivation.md
+      - Implementation: explanations/implementation.md
+      - Limitations: explanations/limitations.md
+
+site_name: rst-in-md
+
+repo_name: sebpretzer/rst-in-md
+repo_url: https://github.com/sebpretzer/rst-in-md
+edit_uri: edit/main/docs/
+
+theme:
+  name: material
+  icon:
+    repo: material/github
+  features:
+    - navigation.expand
+    - navigation.instant
+    - navigation.top
+    - search.suggest
+  palette:
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+      primary: black
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+      primary: black
+
+markdown_extensions:
+  - rst_in_md
+  - admonition
+
+plugins:
+  - search

@@ -1,0 +1,16 @@
+{
+    "editor.minimap.enabled": true,
+    "editor.formatOnSave": true,
+    "files.trimTrailingWhitespace": true,
+    "files.insertFinalNewline": true,
+    "[python]": {
+        "editor.tabCompletion": "on",
+        "editor.codeActionsOnSave": {
+            "source.organizeImports.ruff": "explicit"
+        },
+        "editor.defaultFormatter": "charliermarsh.ruff",
+        "editor.rulers": [
+            88
+        ],
+    },
+}

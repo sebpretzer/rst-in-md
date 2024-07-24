@@ -1,0 +1,57 @@
+[project]
+name = "rst-in-md"
+dynamic = ["version"]
+description = "Convert reStructuredText within Markdown to HTML."
+authors = [{name = "Seb Pretzer", email = "24555985+sebpretzer@users.noreply.github.com"}]
+license = {file = "LICENSE"}
+readme = "docs/README.md"
+requires-python = ">=3.11"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+dependencies = [
+    "Markdown >=3.5.0",
+    "docutils >=0.21.0",
+    "beautifulsoup4 >=4.12.0",
+]
+
+[project.optional-dependencies]
+ci = ["pre-commit >=3.0.0"]
+test = ["pytest >=7.0.0"]
+docs = [
+    "mkdocs >=1.5.0",
+    "mkdocs-material >=9.0.0",
+]
+publishing = ["hatch >=1.12.0"]
+
+[project.urls]
+Documentation = "https://sebpretzer.github.io/rst-in-md/"
+Source = "https://github.com/sebpretzer/rst-in-md"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.ruff]
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["ALL"]
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"
+
+[tool.ruff.format]
+docstring-code-format = true
+
+[tool.ruff.lint.per-file-ignores]
+"tests/**" = ["ANN", "D", "INP", "PLR2004", "S101"]
+
+[tool.pyright]
+venvPath = "."
+venv = ".venv"
+
+[tool.hatch.version]
+path = "rst_in_md/__init__.py"

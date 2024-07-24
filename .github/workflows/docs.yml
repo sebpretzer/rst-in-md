@@ -1,0 +1,41 @@
+name: mkdocs
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, closed]
+    paths:
+      - "docs/**"
+      - "mkdocs.yml"
+      - ".github/workflows/mkdocs.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  mkdocs:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Configure Git Credentials
+        run: |
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+      - uses: actions/setup-python@v5
+        with:
+          python-version: 3.11
+      - name: install uv
+        run: |
+          echo "export PATH=\$HOME/.cargo/bin:\$PATH" >> $GITHUB_ENV
+          make uv-install
+      - name: Install mkdocs dependencies
+        run: make install
+      - name: Build the site
+        if: github.ref != 'refs/heads/main'
+        run: make mkdocs-check
+      - name: Deploy to GitHub Pages
+        if: ${{ github.event.pull_request.merged == true || github.event_name == 'workflow_dispatch' }}
+        run: make mkdocs-publish
