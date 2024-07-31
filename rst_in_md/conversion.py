@@ -9,8 +9,26 @@ from bs4 import BeautifulSoup, Tag
 ATTRIBUTES_TO_STRIP = ["class", "id", "name", "style"]
 
 
-# https://github.com/andrewpetrochenkov/rst2html.py/blob/master/rst2html/__init__.py
 def _rst_to_soup(rst: str) -> BeautifulSoup:
+    """Convert reStructuredText to a BeautifulSoup object.
+
+    This will convert the reStructuredText to HTML using docutils. The HTML is then
+    converted to a BeautifulSoup object and returned.
+
+    Errors and warnings are captured gracefully and raised at the end.
+
+    This function is heavily inspired by this [rst2html](https://github.com/andrewpetrochenkov/rst2html.py/blob/b66942f16e93d7260748ecc90867c55a4bb3236d/rst2html/__init__.py)
+    implementation.
+
+    Args:
+        rst (str): The reStructuredText to convert.
+
+    Raises:
+        ValueError: If there are any errors or warnings during the conversion.
+
+    Returns:
+        BeautifulSoup: The converted reStructuredText.
+    """
     kwargs = {
         "writer_name": "html",
         "settings_overrides": {
@@ -30,8 +48,19 @@ def _rst_to_soup(rst: str) -> BeautifulSoup:
     return BeautifulSoup(parts.get("body"), features="html.parser")
 
 
-# https://stackoverflow.com/a/9045719
 def _strip_attributes(soup: BeautifulSoup) -> BeautifulSoup:
+    """Remove specific attributes from the soup.
+
+    This will remove all attributes from the top level tags, and will also remove
+    some attributes from the descendants. This took heavy inspiration from this
+    [StackOverflow answer](https://stackoverflow.com/a/9045719).
+
+    Args:
+        soup (BeautifulSoup): Input soup to remove attributes from.
+
+    Returns:
+        BeautifulSoup: Same soup with attributes removed.
+    """
     # Remove attributes from the top level tags
     for tag in soup.contents:
         if isinstance(tag, Tag):

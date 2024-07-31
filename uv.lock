@@ -223,6 +223,18 @@ wheels = [
 ]
 
 [[distribution]]
+name = "griffe"
+version = "0.48.0"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "colorama" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/a8/3c/7f439fe3f55373602c66fcd100abfdbf274f9f4cc832cdc67f2bfd013180/griffe-0.48.0.tar.gz", hash = "sha256:f099461c02f016b6be4af386d5aa92b01fb4efe6c1c2c360dda9a5d0a863bb7f", size = 369612 }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/22/de/521ff6028fc8977d5669b48d84b002b7bf5c99a3e9c551c92d4c6bf95ec1/griffe-0.48.0-py3-none-any.whl", hash = "sha256:f944c6ff7bd31cf76f264adcd6ab8f3d00a2f972ae5cc8db2d7b6dcffeff65a2", size = 140816 },
+]
+
+[[distribution]]
 name = "h11"
 version = "0.14.0"
 source = { registry = "https://pypi.org/simple" }
@@ -520,6 +532,20 @@ wheels = [
 ]
 
 [[distribution]]
+name = "mkdocs-autorefs"
+version = "1.0.1"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "markdown" },
+    { name = "markupsafe" },
+    { name = "mkdocs" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/ce/75/0ced93354fd9df40531c548f07d6462912eea9519e8cd78a8e6b42d73c4a/mkdocs_autorefs-1.0.1.tar.gz", hash = "sha256:f684edf847eced40b570b57846b15f0bf57fb93ac2c510450775dcf16accb971", size = 17743 }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/f6/01/d413c98335ed75d8c211afb91320811366d55fb0ef7f4b01b9ab19630eac/mkdocs_autorefs-1.0.1-py3-none-any.whl", hash = "sha256:aacdfae1ab197780fb7a2dac92ad8a3d8f7ca8049a9cbe56a4218cd52e8da570", size = 13444 },
+]
+
+[[distribution]]
 name = "mkdocs-get-deps"
 version = "0.2.0"
 source = { registry = "https://pypi.org/simple" }
@@ -562,6 +588,43 @@ source = { registry = "https://pypi.org/simple" }
 sdist = { url = "https://files.pythonhosted.org/packages/79/9b/9b4c96d6593b2a541e1cb8b34899a6d021d208bb357042823d4d2cabdbe7/mkdocs_material_extensions-1.3.1.tar.gz", hash = "sha256:10c9511cea88f568257f960358a467d12b970e1f7b2c0e5fb2bb48cab1928443", size = 11847 }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/5b/54/662a4743aa81d9582ee9339d4ffa3c8fd40a4965e033d77b9da9774d3960/mkdocs_material_extensions-1.3.1-py3-none-any.whl", hash = "sha256:adff8b62700b25cb77b53358dad940f3ef973dd6db797907c49e3c2ef3ab4e31", size = 8728 },
+]
+
+[[distribution]]
+name = "mkdocstrings"
+version = "0.25.2"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "click" },
+    { name = "jinja2" },
+    { name = "markdown" },
+    { name = "markupsafe" },
+    { name = "mkdocs" },
+    { name = "mkdocs-autorefs" },
+    { name = "platformdirs" },
+    { name = "pymdown-extensions" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/24/a6/d544fae9749b19e23fb590f6344f9eae3a312323065070b4874236bb0e04/mkdocstrings-0.25.2.tar.gz", hash = "sha256:5cf57ad7f61e8be3111a2458b4e49c2029c9cb35525393b179f9c916ca8042dc", size = 91796 }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/2b/86/ee2aef075cc9a62a4f087c3c3f4e3e8a8318afe05a92f8f8415f1bf1af64/mkdocstrings-0.25.2-py3-none-any.whl", hash = "sha256:9e2cda5e2e12db8bb98d21e3410f3f27f8faab685a24b03b06ba7daa5b92abfc", size = 29289 },
+]
+
+[distribution.optional-dependencies]
+python = [
+    { name = "mkdocstrings-python" },
+]
+
+[[distribution]]
+name = "mkdocstrings-python"
+version = "1.10.7"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "griffe" },
+    { name = "mkdocstrings" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/27/89/d193ca097708989c667c9851854ae1f4c6b60d4608e805e0c77413073f9f/mkdocstrings_python-1.10.7.tar.gz", hash = "sha256:bfb5e29acfc69c9177d2b11c18d3127d16e553b8da9bb6d184e428d54795600b", size = 161638 }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/ae/c7/cf7b4b60c76c6661389bbd1cd8a5d308044db6ab3a5842ef0743d143b277/mkdocstrings_python-1.10.7-py3-none-any.whl", hash = "sha256:8999acb8e2cb6ae5edb844ce1ed6a5fcc14285f85cfd9df374d9a0f0be8a40b6", size = 108328 },
 ]
 
 [[distribution]]
@@ -846,6 +909,8 @@ ci = [
 docs = [
     { name = "mkdocs" },
     { name = "mkdocs-material" },
+    { name = "mkdocstrings" },
+    { name = "mkdocstrings", extra = ["python"] },
 ]
 publishing = [
     { name = "hatch" },

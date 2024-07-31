@@ -15,7 +15,6 @@ class RestructuredTextInMarkdownPreProcessor(Preprocessor):
     """Preprocessor to convert restructured text to html in markdown."""
 
     BS4_FORMATTER = bs4.formatter.HTMLFormatter(indent=2)
-    # https://github.com/Python-Markdown/markdown/blob/33359faa385f59b84cd87df5f4b0996055a482e2/markdown/extensions/fenced_code.py#L56-L67
     FENCED_BLOCK_RE = FencedBlockPreprocessor(Markdown(), {}).FENCED_BLOCK_RE
     IGNORE_RE = re.compile(r"<!--\s*ignore:\s*rst-in-md\s*-->\s*$")
 
@@ -24,10 +23,12 @@ class RestructuredTextInMarkdownPreProcessor(Preprocessor):
 
         This method will look for fenced code blocks in markdown that are marked as
         restructured text (`rst`, `rest`, `restructuredtext`) and convert them to html.
-        It leverages the same regex as the `FencedBlockPreprocessor` to find the blocks.
+        It leverages the same regex as the [FencedBlockPreprocessor](https://github.com/Python-Markdown/markdown/blob/33359faa385f59b84cd87df5f4b0996055a482e2/markdown/extensions/fenced_code.py#L56-L67)
+        to find the blocks.
 
         You can also add an ignore comment right before the fenced block to prevent it
-        from being converted. The comment should be `<!-- ignore: rst-in-md -->`.
+        from being converted. The comment should be `<!-- ignore: rst-in-md -->`. You
+        can see an example of this [here](../../guides/inline_ignore/).
 
         Args:
             lines (list[str]): List of lines in markdown.
