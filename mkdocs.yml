@@ -1,5 +1,5 @@
 nav:
-  - Home: README.md
+  - Home: index.md
   - Guides:
       - Installation: guides/installation.md
       - General Usage: guides/general_usage.md
