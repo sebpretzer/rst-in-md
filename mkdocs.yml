@@ -8,6 +8,9 @@ nav:
       - Motivation: explanations/motivation.md
       - Implementation: explanations/implementation.md
       - Limitations: explanations/limitations.md
+  - Reference:
+      - Extension: reference/extension.md
+      - Conversion: reference/conversion.md
 
 site_name: rst-in-md
 
@@ -44,3 +47,8 @@ markdown_extensions:
 
 plugins:
   - search
+  - mkdocstrings:
+      handlers:
+        python:
+          options:
+            show_root_heading: true
