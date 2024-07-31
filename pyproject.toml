@@ -4,7 +4,7 @@ dynamic = ["version"]
 description = "Convert reStructuredText within Markdown to HTML."
 authors = [{name = "Seb Pretzer", email = "24555985+sebpretzer@users.noreply.github.com"}]
 license = {file = "LICENSE"}
-readme = "docs/README.md"
+readme = "README.md"
 requires-python = ">=3.11"
 classifiers = [
     "Programming Language :: Python :: 3",
