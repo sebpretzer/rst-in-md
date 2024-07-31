@@ -11,11 +11,14 @@ concurrency:
 jobs:
   checks:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.9", "3.10", "3.11", "3.12"]
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
-          python-version: 3.11
+          python-version: ${{ matrix.python-version }}
       - name: install uv
         run: |
           echo "export PATH=\$HOME/.cargo/bin:\$PATH" >> $GITHUB_ENV
@@ -24,5 +27,5 @@ jobs:
         run: make install
       - name: Run pre-commit checks
         run: make lint
-      - name: Run ruff checks
+      - name: Run pytest tests
         run: make test

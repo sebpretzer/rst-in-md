@@ -5,7 +5,7 @@ description = "Convert reStructuredText within Markdown to HTML."
 authors = [{name = "Seb Pretzer", email = "24555985+sebpretzer@users.noreply.github.com"}]
 license = {file = "LICENSE"}
 readme = "README.md"
-requires-python = ">=3.11"
+requires-python = ">=3.9,<3.13"
 classifiers = [
     "Programming Language :: Python :: 3",
     "License :: OSI Approved :: MIT License",
