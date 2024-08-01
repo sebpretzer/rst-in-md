@@ -1,8 +1,8 @@
 # Integrations
 
-## mkdocs
+## MkDocs
 
-To integrate with [mkdocs](https://www.mkdocs.org/), you simply need to make sure `rst-in-md` is installed and then add the following to your `mkdocs.yml` file:
+To integrate with [MkDocs](https://www.mkdocs.org/), you simply need to make sure `rst-in-md` is installed and then add the following to your `mkdocs.yml` file:
 
 ```yaml
 markdown_extensions:
@@ -15,6 +15,7 @@ markdown_extensions:
 
 
 ```yaml
+markdown_extensions:
   - pymdownx.superfences:
       custom_fences:
         - name: [rst, rest, restructuredtext]
