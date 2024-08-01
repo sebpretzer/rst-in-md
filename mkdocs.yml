@@ -4,6 +4,7 @@ nav:
       - Installation: guides/installation.md
       - General Usage: guides/general_usage.md
       - Inline Ignore: guides/inline_ignore.md
+      - Integrations: guides/integrations.md
   - Explanations:
       - Motivation: explanations/motivation.md
       - Implementation: explanations/implementation.md
@@ -46,11 +47,7 @@ markdown_extensions:
   - admonition
   - pymdownx.superfences:
       custom_fences:
-        - name: rst
-          format: !!python/name:rst_in_md.superfence
-        - name: rest
-          format: !!python/name:rst_in_md.superfence
-        - name: restructuredtext
+        - name: [rst, rest, restructuredtext]
           format: !!python/name:rst_in_md.superfence
 
 plugins:
