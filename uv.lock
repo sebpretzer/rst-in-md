@@ -1059,6 +1059,7 @@ dependencies = [
     { name = "beautifulsoup4" },
     { name = "docutils" },
     { name = "markdown" },
+    { name = "pymdown-extensions" },
 ]
 
 [distribution.optional-dependencies]
