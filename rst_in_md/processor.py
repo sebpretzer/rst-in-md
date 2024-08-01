@@ -3,18 +3,16 @@
 import re
 import warnings
 
-import bs4
 from markdown import Markdown
 from markdown.extensions.fenced_code import FencedBlockPreprocessor
 from markdown.preprocessors import Preprocessor
 
-from rst_in_md.conversion import rst_to_soup
+from rst_in_md.conversion import BS4_FORMATTER, rst_to_soup
 
 
 class RestructuredTextInMarkdownPreProcessor(Preprocessor):
     """Preprocessor to convert restructured text to html in markdown."""
 
-    BS4_FORMATTER = bs4.formatter.HTMLFormatter(indent=2)
     FENCED_BLOCK_RE = FencedBlockPreprocessor(Markdown(), {}).FENCED_BLOCK_RE
     IGNORE_RE = re.compile(r"<!--\s*ignore:\s*rst-in-md\s*-->\s*$")
 
@@ -49,7 +47,7 @@ class RestructuredTextInMarkdownPreProcessor(Preprocessor):
             else:
                 try:
                     processed += rst_to_soup(match.group("code")).prettify(
-                        formatter=self.BS4_FORMATTER,
+                        formatter=BS4_FORMATTER,
                     )
                 except ValueError as e:
                     warnings.warn(str(e), stacklevel=1)

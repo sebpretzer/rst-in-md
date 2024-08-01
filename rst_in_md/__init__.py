@@ -2,12 +2,13 @@
 
 from markdown.extensions import Extension
 
-from rst_in_md.conversion import rst_to_soup
+from rst_in_md.conversion import rst_to_soup, superfence
 from rst_in_md.extension import RestructuredTextInMarkdown
 from rst_in_md.processor import RestructuredTextInMarkdownPreProcessor
 
 __all__ = [
     "rst_to_soup",
+    "superfence",
     "RestructuredTextInMarkdown",
     "RestructuredTextInMarkdownPreProcessor",
 ]
