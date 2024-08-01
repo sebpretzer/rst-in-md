@@ -47,13 +47,10 @@ markdown_extensions:
   - pymdownx.superfences:
       custom_fences:
         - name: rst
-          class: rst-in-md
           format: !!python/name:rst_in_md.superfence
         - name: rest
-          class: rst-in-md
           format: !!python/name:rst_in_md.superfence
         - name: restructuredtext
-          class: rst-in-md
           format: !!python/name:rst_in_md.superfence
 
 plugins:
