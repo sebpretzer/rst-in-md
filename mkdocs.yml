@@ -45,7 +45,6 @@ markdown_extensions:
   - rst_in_md
   - admonition
   - pymdownx.superfences:
-      preserve_tabs: true
       custom_fences:
         - name: rst
           class: rst-in-md
