@@ -44,6 +44,18 @@ theme:
 markdown_extensions:
   - rst_in_md
   - admonition
+  - pymdownx.superfences:
+      preserve_tabs: true
+      custom_fences:
+        - name: rst
+          class: rst-in-md
+          format: !!python/name:rst_in_md.superfence
+        - name: rest
+          class: rst-in-md
+          format: !!python/name:rst_in_md.superfence
+        - name: restructuredtext
+          class: rst-in-md
+          format: !!python/name:rst_in_md.superfence
 
 plugins:
   - search
