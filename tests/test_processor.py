@@ -1,5 +1,14 @@
 from textwrap import dedent
 
+import pytest
+
+from rst_in_md import RestructuredTextInMarkdownPreProcessor
+
+
+@pytest.fixture()
+def preprocessor():
+    return RestructuredTextInMarkdownPreProcessor()
+
 
 def test_run(preprocessor):
     unprocessed = dedent("""

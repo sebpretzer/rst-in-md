@@ -26,7 +26,7 @@ class RestructuredTextInMarkdownPreProcessor(Preprocessor):
 
         You can also add an ignore comment right before the fenced block to prevent it
         from being converted. The comment should be `<!-- ignore: rst-in-md -->`. You
-        can see an example of this [here](../../guides/inline_ignore/).
+        can see an example of this [here](../guides/inline_ignore.md).
 
         Args:
             lines (list[str]): List of lines in markdown.

@@ -20,13 +20,18 @@ markdown_extensions:
         - name: rst
           class: rst-in-md
           format: !!python/name:rst_in_md.superfence
+          validator: !!python/name:rst_in_md.superfence_validator
         - name: rest
           class: rst-in-md
           format: !!python/name:rst_in_md.superfence
+          validator: !!python/name:rst_in_md.superfence_validator
         - name: restructuredtext
           class: rst-in-md
           format: !!python/name:rst_in_md.superfence
+          validator: !!python/name:rst_in_md.superfence_validator
 ```
+
+You can find the reference for the extension [here](../reference/superfence.md).
 
 !!! note
     You only need to specify the custom fence for the languages you are using in your code blocks. For example, if all your code blocks are marked as `rst`, you only need to specify the custom fence for `rst`, and you can ignore the other two.

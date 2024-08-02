@@ -5,9 +5,8 @@ from contextlib import redirect_stderr
 
 import docutils.core
 from bs4 import BeautifulSoup, Tag, formatter
-from markdown import Markdown
 
-ATTRIBUTES_TO_STRIP = ["class", "id", "name", "style"]
+ATTRIBUTES_TO_STRIP = ["class", "id", "name", "style", "border"]
 BS4_FORMATTER = formatter.HTMLFormatter(indent=2)
 
 
@@ -90,14 +89,3 @@ def rst_to_soup(rst: str) -> BeautifulSoup:
     """
     soup = _rst_to_soup(rst)
     return _strip_attributes(soup)
-
-
-def superfence(
-    source: str,
-    language: str,  # noqa: ARG001
-    css_class: str,  # noqa: ARG001
-    options: dict,  # noqa: ARG001
-    md: Markdown,  # noqa: ARG001
-    **kwargs: dict,  # noqa: ARG001
-) -> str:
-    return rst_to_soup(source).prettify(formatter=BS4_FORMATTER)

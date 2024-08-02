@@ -12,6 +12,13 @@ nav:
   - Reference:
       - Extension: reference/extension.md
       - Conversion: reference/conversion.md
+      - Superfence: reference/superfence.md
+
+not_in_nav: |
+  test.md
+
+draft_docs: |
+  test.md
 
 site_name: rst-in-md
 
@@ -47,8 +54,10 @@ markdown_extensions:
   - admonition
   - pymdownx.superfences:
       custom_fences:
-        - name: [rst, rest, restructuredtext]
+        - name: rst
+          class: rst-in-md
           format: !!python/name:rst_in_md.superfence
+          validator: !!python/name:rst_in_md.superfence_validator
 
 plugins:
   - search
