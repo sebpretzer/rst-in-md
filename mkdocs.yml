@@ -56,7 +56,7 @@ markdown_extensions:
       custom_fences:
         - name: rst
           class: rst-in-md
-          format: !!python/name:rst_in_md.superfence
+          format: !!python/name:rst_in_md.superfence_formatter
           validator: !!python/name:rst_in_md.superfence_validator
 
 plugins:
