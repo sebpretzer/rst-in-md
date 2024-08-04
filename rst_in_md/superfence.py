@@ -65,8 +65,14 @@ def superfence_validator(
         logging.error(msg)
         return False
 
-    if len(inputs) > 0:
-        logging.error("inputs are not supported.")
+    allowed = {"rst-in-md"}
+    if (keys := set(inputs.keys())) > allowed:
+        msg = f"keys '{keys - allowed}' are not supported."
+        logging.error(msg)
+        return False
+
+    if inputs.get("rst-in-md") == "false":
+        logging.info("rst-in-md is set to false.")
         return False
 
     if len(options) > 0:
