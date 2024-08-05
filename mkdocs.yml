@@ -4,6 +4,7 @@ nav:
       - Installation: guides/installation.md
       - General Usage: guides/general_usage.md
       - Inline Ignore: guides/inline_ignore.md
+      - Integrations: guides/integrations.md
   - Explanations:
       - Motivation: explanations/motivation.md
       - Implementation: explanations/implementation.md
@@ -11,6 +12,13 @@ nav:
   - Reference:
       - Extension: reference/extension.md
       - Conversion: reference/conversion.md
+      - Superfence: reference/superfence.md
+
+not_in_nav: |
+  test.md
+
+draft_docs: |
+  test.md
 
 site_name: rst-in-md
 
@@ -42,8 +50,15 @@ theme:
       primary: black
 
 markdown_extensions:
+  - attr_list
   - rst_in_md
   - admonition
+  - pymdownx.superfences:
+      custom_fences:
+        - name: rst
+          class: rst-in-md
+          format: !!python/name:rst_in_md.superfence_formatter
+          validator: !!python/name:rst_in_md.superfence_validator
 
 plugins:
   - search

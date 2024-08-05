@@ -5,11 +5,14 @@ from markdown.extensions import Extension
 from rst_in_md.conversion import rst_to_soup
 from rst_in_md.extension import RestructuredTextInMarkdown
 from rst_in_md.processor import RestructuredTextInMarkdownPreProcessor
+from rst_in_md.superfence import superfence_formatter, superfence_validator
 
 __all__ = [
     "rst_to_soup",
     "RestructuredTextInMarkdown",
     "RestructuredTextInMarkdownPreProcessor",
+    "superfence_formatter",
+    "superfence_validator",
 ]
 
 __version__ = "0.0.0"

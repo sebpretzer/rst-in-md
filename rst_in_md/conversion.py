@@ -4,9 +4,11 @@ import io
 from contextlib import redirect_stderr
 
 import docutils.core
-from bs4 import BeautifulSoup, Tag
+from bs4 import BeautifulSoup, Tag, formatter
 
-ATTRIBUTES_TO_STRIP = ["class", "id", "name", "style"]
+LANGUAGES = ["rst", "rest", "restructuredtext"]
+ATTRIBUTES_TO_STRIP = ["class", "id", "name", "style", "border"]
+BS4_FORMATTER = formatter.HTMLFormatter(indent=2)
 
 
 def _rst_to_soup(rst: str) -> BeautifulSoup:
