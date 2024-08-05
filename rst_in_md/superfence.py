@@ -29,11 +29,11 @@ def superfence_formatter(
 
     Args:
         source (str): Language of the superfence.
-        language (str): Language of the superfence _(not used)_.
-        css_class (str): CSS class of the superfence _(not used)_.
-        options (dict): Options of the superfence _(not used)_.
-        md (Markdown): The markdown instance _(not used)_.
-        **kwargs (dict): Additional arguments _(not used)_.
+        language (str): Language of the superfence _(required, but not used)_.
+        css_class (str): CSS class of the superfence _(required, but not used)_.
+        options (dict): Options of the superfence _(required, but not used)_.
+        md (Markdown): The markdown instance _(required, but not used)_.
+        **kwargs (dict): Additional arguments _(required, but not used)_.
 
     Returns:
         str: The converted html.
@@ -55,7 +55,7 @@ def superfence_validator(
         inputs (dict): All the parsed options/attributes of the superfence.
         options (dict): A dictionary to which all valid options should be assigned to.
         attrs (dict): A dictionary to which all valid attributes should be assigned to.
-        md (Markdown): the markdown instance _(not used)_.
+        md (Markdown): the markdown instance _(required, but not used)_.
 
     Returns:
         bool: If the superfence should be processed or not.
