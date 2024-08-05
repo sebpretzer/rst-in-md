@@ -4,7 +4,7 @@ import logging
 
 from markdown import Markdown
 
-from rst_in_md.conversion import BS4_FORMATTER, rst_to_soup
+from rst_in_md.conversion import BS4_FORMATTER, LANGUAGES, rst_to_soup
 
 logger = logging.getLogger(__name__)
 logging.basicConfig(level=logging.INFO)
@@ -60,7 +60,7 @@ def superfence_validator(
     Returns:
         bool: If the superfence should be processed or not.
     """
-    if language not in ["rst", "rest", "restructuredtext"]:
+    if language not in LANGUAGES:
         msg = f"language '{language}' is not supported."
         logging.error(msg)
         return False

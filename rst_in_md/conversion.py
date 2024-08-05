@@ -6,6 +6,7 @@ from contextlib import redirect_stderr
 import docutils.core
 from bs4 import BeautifulSoup, Tag, formatter
 
+LANGUAGES = ["rst", "rest", "restructuredtext"]
 ATTRIBUTES_TO_STRIP = ["class", "id", "name", "style", "border"]
 BS4_FORMATTER = formatter.HTMLFormatter(indent=2)
 

@@ -50,6 +50,7 @@ theme:
       primary: black
 
 markdown_extensions:
+  - attr_list
   - rst_in_md
   - admonition
   - pymdownx.superfences:
