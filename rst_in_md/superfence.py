@@ -3,11 +3,45 @@
 import logging
 
 from markdown import Markdown
+from markdown.preprocessors import Preprocessor
+from pymdownx.superfences import SuperFencesBlockPreprocessor
 
 from rst_in_md.conversion import BS4_FORMATTER, LANGUAGES, rst_to_soup
 
 logger = logging.getLogger(__name__)
 logging.basicConfig(level=logging.INFO)
+
+
+class Configurator(Preprocessor):
+    """Preprocessor to deregister `rst-in-md` if `pymdownx.superfences` is installed."""
+
+    initialized = False
+
+    def superfences_installed(self) -> bool:
+        """Check if the `pymdownx.superfences` extension is installed.
+
+        Returns:
+            bool: If the extension is installed or not.
+        """
+        return isinstance(
+            self.md.preprocessors["fenced_code_block"],
+            SuperFencesBlockPreprocessor,
+        )
+
+    def run(self, lines: list[str]) -> list[str]:
+        """Deregister `rst-in-md` if `pymdownx.superfences` is installed.
+
+        Args:
+            lines (list[str]): Input lines _(required, but not used)_.
+
+        Returns:
+            list[str]: Identical as the input lines.
+        """
+        if not self.initialized and self.superfences_installed():
+            self.md.preprocessors.deregister("rst-in-md")
+            self.initialized = True
+
+        return lines
 
 
 def superfence_formatter(
