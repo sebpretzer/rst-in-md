@@ -2,10 +2,11 @@
 
 ## MkDocs
 
-To integrate with [MkDocs](https://www.mkdocs.org/), you simply need to make sure `rst-in-md` is installed and then add the following to your `mkdocs.yml` file:
+To integrate with [MkDocs](https://www.mkdocs.org/), you simply need to make sure `rst-in-md` is [installed](./installation.md) and then add the following to your `mkdocs.yml` file:
 
 ```yaml
 markdown_extensions:
+  - attr_list
   - rst_in_md
 ```
 
@@ -31,7 +32,7 @@ markdown_extensions:
           validator: !!python/name:rst_in_md.superfence_validator
 ```
 
-You can find the reference for the extension [here](../reference/superfence.md).
-
 !!! note
     You only need to specify the custom fence for the languages you are using in your code blocks (`rst`, `rest`, `rst-in-md`). For example, if all your code blocks are marked as `rst`, you only need to specify the custom fence for `rst`, and you can ignore the other two.
+
+You can find the reference for the extension [here](../reference/superfence.md).

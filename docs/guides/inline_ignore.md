@@ -2,8 +2,7 @@
 
 To use the inline ignore feature, add a comment right above the fenced code block:
 ```markdown
-    <!-- ignore: rst-in-md -->
-    ```rst
+    ```{.rst rst-in-md=false}
     With this comment, this will be ignored by the `rst-in-md` tool.
     ```
 
