@@ -25,9 +25,9 @@ class RestructuredTextInMarkdownPreProcessor(Preprocessor):
         It leverages the same regex as the [FencedBlockPreprocessor](https://github.com/Python-Markdown/markdown/blob/33359faa385f59b84cd87df5f4b0996055a482e2/markdown/extensions/fenced_code.py#L56-L67)
         to find the blocks.
 
-        You can also add an ignore comment right before the fenced block to prevent it
-        from being converted. The comment should be `<!-- ignore: rst-in-md -->`. You
-        can see an example of this [here](../guides/inline_ignore.md).
+        You can also ignore a block from being converted by `rst-in-md` adding
+        `rst-in-md=false` to the attributes: ````{.rst rst-in-md=false}`. You can see an
+        example of this [here](../guides/inline_ignore.md).
 
         Args:
             lines (list[str]): List of lines in markdown.
