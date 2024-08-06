@@ -91,15 +91,12 @@ class RestructuredTextInMarkdownAutoConfigurator(Preprocessor):
         Raises:
             ValueError: SuperFencesCodeExtension not found.
         """
-        ext = None
-        for _ext in self.md.registeredExtensions:
-            if isinstance(_ext, SuperFencesCodeExtension):
-                ext = _ext
-                break
-
-        if ext is None:
-            msg = "SuperFencesCodeExtension not found."
+        registered = self.md.registeredExtensions
+        extensions = [e for e in registered if isinstance(e, SuperFencesCodeExtension)]
+        if len(extensions) != 1:
+            msg = "Unable to find SuperFencesCodeExtension."
             raise ValueError(msg)
+        ext = extensions[0]
 
         config = self.md.preprocessors["fenced_code_block"].config  # pyright: ignore[reportAttributeAccessIssue]
         custom_fences = config.get("custom_fences", [])
