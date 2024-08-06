@@ -56,9 +56,10 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         # https://github.com/cli/cli/issues/2067#issuecomment-704224994
         run: |
-          sed -n '/^## ${{ github.event.inputs.tag }}/,/^## /p' CHANGELOG.md | sed '1d;$d' | \
-          gh release create ${{ github.event.inputs.tag }}-rc2 \
-            -t ${{ github.event.inputs.tag }}-rc2 \
+          title=$(sed 's/-.*//' <<< ${{ github.event.inputs.tag }})
+          sed -n '/^## $title/,/^## /p' CHANGELOG.md | sed '1d;$d' | \
+          gh release create ${{ github.event.inputs.tag }} \
+            -t ${{ github.event.inputs.tag }} \
             -F - \
             dist/*
 
