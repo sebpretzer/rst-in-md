@@ -101,7 +101,7 @@ class RestructuredTextInMarkdownAutoConfigurator(Preprocessor):
             msg = "SuperFencesCodeExtension not found."
             raise ValueError(msg)
 
-        config = self.md.preprocessors("fenced_code_block").config  # pyright: ignore[reportCallIssue]
+        config = self.md.preprocessors["fenced_code_block"].config  # pyright: ignore[reportAttributeAccessIssue]
         custom_fences = config.get("custom_fences", [])
         for language in LANGUAGES:
             if (fence := construct_fence_config(language)) not in custom_fences:
