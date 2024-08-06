@@ -14,12 +14,6 @@ nav:
       - Conversion: reference/conversion.md
       - Superfence: reference/superfence.md
 
-not_in_nav: |
-  test.md
-
-draft_docs: |
-  test.md
-
 site_name: rst-in-md
 
 repo_name: sebpretzer/rst-in-md
