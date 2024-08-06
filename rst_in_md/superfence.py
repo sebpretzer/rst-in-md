@@ -1,10 +1,17 @@
 """PyMdown Extensions Custom Superfence for `rst_in_md`."""
 
 import logging
+from functools import partial
 
 from markdown import Markdown
 from markdown.preprocessors import Preprocessor
-from pymdownx.superfences import SuperFencesBlockPreprocessor
+from pymdownx.superfences import (
+    SuperFencesBlockPreprocessor,
+    SuperFencesCodeExtension,
+    _formatter,
+    _test,
+    _validator,
+)
 
 from rst_in_md.conversion import BS4_FORMATTER, LANGUAGES, rst_to_soup
 
@@ -12,7 +19,57 @@ logger = logging.getLogger(__name__)
 logging.basicConfig(level=logging.INFO)
 
 
-class Configurator(Preprocessor):
+def construct_fence_config(language: str) -> dict:
+    """Create a fence configuration dictionary for `pymdownx.superfences`.
+
+    Create a fence configuration for `pymdownx.superfences` with the given language,
+    in the given [structure](https://github.com/facelessuser/pymdown-extensions/blob/cd7c704487a3a79b6619bfcd0c6af83104d630a8/pymdownx/superfences.py#L273-L276).
+    This configuration will be read by `pymdownx.superfences` to determine how to
+    process the superfence.
+
+    Args:
+        language (str): Language of the superfence.
+
+    Returns:
+        dict: Dictionary of the fence configuration.
+    """
+    return {
+        "name": language,
+        "class": "rst-in-md",
+        "format": superfence_formatter,
+        "validator": superfence_validator,
+    }
+
+
+def construct_superfence(language: str) -> dict:
+    """Create a superfence dictionary for `pymdownx.superfences`.
+
+    Create a superfence dictionary for `pymdownx.superfences` with the given language,
+    in the given [structure](https://github.com/facelessuser/pymdown-extensions/blob/cd7c704487a3a79b6619bfcd0c6af83104d630a8/pymdownx/superfences.py#L240-L245).
+    This dictionary will be appended to `SuperFencesCodeExtension().superfences`.
+
+    Args:
+        language (str): Language of the superfence.
+
+    Returns:
+        dict: Dictionary of the superfence for `pymdownx.superfences`.
+    """
+    return {
+        "name": language,
+        "test": partial(_test, test_language=language),
+        "formatter": partial(
+            _formatter,
+            class_name="rst-in-md",
+            _fmt=superfence_formatter,
+        ),
+        "validator": partial(
+            _validator,
+            validator=superfence_validator,
+        ),
+    }
+
+
+class RestructuredTextInMarkdownAutoConfigurator(Preprocessor):
     """Preprocessor to deregister `rst-in-md` if `pymdownx.superfences` is installed."""
 
     initialized = False
@@ -28,6 +85,31 @@ class Configurator(Preprocessor):
             SuperFencesBlockPreprocessor,
         )
 
+    def inject_custom_configs(self) -> None:
+        """Add custom fence configs to `pymdownx.superfences`, if not already present.
+
+        Raises:
+            ValueError: SuperFencesCodeExtension not found.
+        """
+        ext = None
+        for _ext in self.md.registeredExtensions:
+            if isinstance(_ext, SuperFencesCodeExtension):
+                ext = _ext
+                break
+
+        if ext is None:
+            msg = "SuperFencesCodeExtension not found."
+            raise ValueError(msg)
+
+        config = self.md.preprocessors("fenced_code_block").config  # pyright: ignore[reportCallIssue]
+        custom_fences = config.get("custom_fences", [])
+        for language in LANGUAGES:
+            if (fence := construct_fence_config(language)) not in custom_fences:
+                custom_fences.append(fence)
+                ext.superfences.append(construct_superfence(language))
+
+        config["custom_fences"] = custom_fences
+
     def run(self, lines: list[str]) -> list[str]:
         """Deregister `rst-in-md` if `pymdownx.superfences` is installed.
 
@@ -39,6 +121,7 @@ class Configurator(Preprocessor):
         """
         if not self.initialized and self.superfences_installed():
             self.md.preprocessors.deregister("rst-in-md")
+            self.inject_custom_configs()
             self.initialized = True
 
         return lines

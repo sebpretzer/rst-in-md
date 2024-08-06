@@ -2,6 +2,7 @@ from textwrap import dedent
 
 import pytest
 from markdown import Markdown
+from pymdownx.superfences import SuperFencesCodeExtension
 
 from rst_in_md import superfence_formatter, superfence_validator
 
@@ -15,29 +16,41 @@ def md():
             "attr_list",
             "pymdownx.superfences",
         ],
-        extension_configs={
-            "pymdownx.superfences": {
-                "custom_fences": [
-                    {
-                        "name": "rst",
-                        "class": "rst-in-md",
-                        "format": superfence_formatter,
-                        "validator": superfence_validator,
-                    },
-                ],
-            },
-        },
     )
 
 
 def test_load_extension_with_pymdownx(md):
-    assert md.preprocessors.get_index_for_name("rst-in-md-configurator") == 0
+    assert md.preprocessors.get_index_for_name("rst-in-md-auto-configurator") == 0
     assert md.preprocessors["rst-in-md"]
+
+    assert md.preprocessors["fenced_code_block"].config.get("custom_fences", []) == []
 
     md.convert(source="placeholder")
 
     with pytest.raises(KeyError):
         md.preprocessors["rst-in-md"]
+
+    configs = md.preprocessors["fenced_code_block"].config.get("custom_fences", [])
+    languages = ["rst", "rest", "restructuredtext"]
+    assert len(configs) == len(languages)
+    for config in configs:
+        assert config["name"] in languages
+        assert config["class"] == "rst-in-md"
+        assert config["format"] == superfence_formatter
+        assert config["validator"] == superfence_validator
+
+    ext = None
+    for _ext in md.registeredExtensions:
+        if isinstance(_ext, SuperFencesCodeExtension):
+            ext = _ext
+            break
+
+    assert ext is not None
+    assert len(ext.superfences) == 4  # rst, rest, restructuredtext, built-in
+    for fence in ext.superfences:
+        if fence.get("name") == "superfences":
+            continue
+        assert fence.get("name") in languages
 
 
 def test_load_extension_without_pymdownx(md):
@@ -49,7 +62,7 @@ def test_load_extension_without_pymdownx(md):
         ],
     )
 
-    assert md.preprocessors.get_index_for_name("rst-in-md-configurator") == 0
+    assert md.preprocessors.get_index_for_name("rst-in-md-auto-configurator") == 0
     assert md.preprocessors["rst-in-md"]
 
     md.convert(source="placeholder")

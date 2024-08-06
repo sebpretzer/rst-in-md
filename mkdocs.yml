@@ -47,12 +47,7 @@ markdown_extensions:
   - attr_list
   - rst_in_md
   - admonition
-  - pymdownx.superfences:
-      custom_fences:
-        - name: rst
-          class: rst-in-md
-          format: !!python/name:rst_in_md.superfence_formatter
-          validator: !!python/name:rst_in_md.superfence_validator
+  - pymdownx.superfences
 
 plugins:
   - search
