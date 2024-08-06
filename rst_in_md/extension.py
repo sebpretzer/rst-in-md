@@ -3,6 +3,7 @@
 from markdown import Extension, Markdown
 
 from rst_in_md.processor import RestructuredTextInMarkdownPreProcessor
+from rst_in_md.superfence import RestructuredTextInMarkdownAutoConfigurator
 
 
 class RestructuredTextInMarkdown(Extension):
@@ -27,4 +28,9 @@ class RestructuredTextInMarkdown(Extension):
             RestructuredTextInMarkdownPreProcessor(md),
             "rst-in-md",
             27,
+        )
+        md.preprocessors.register(
+            RestructuredTextInMarkdownAutoConfigurator(md),
+            "rst-in-md-auto-configurator",
+            300,
         )
