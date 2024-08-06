@@ -1,6 +1,7 @@
 # Superfence
 
-You can refer to the integration guide for [PyMdown Extensions SuperFences](../guides/integrations.md#pymdown-extensions-superfences) to understand how to integrate `rst-in-md` with `pymdownx.superfences`.
+!!! tip
+    Reference for PyMdown Extensions Superfences can be found [here](https://facelessuser.github.io/pymdown-extensions/extensions/superfences/#custom-fences).
 
 ::: rst_in_md.superfence_formatter
     :type: function
