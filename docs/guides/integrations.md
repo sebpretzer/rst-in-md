@@ -12,7 +12,7 @@ markdown_extensions:
 
 ## PyMdown Extensions SuperFences
 
-[PyMdown Extensions' SuperFences](https://facelessuser.github.io/pymdown-extensions/extensions/superfences/) override the default code block behavior in Python Markdown. To make sure `rst-in-md` is properly called, you simply need to specify the extension `pymdownx.superfences`:
+The [SuperFences extension](https://facelessuser.github.io/pymdown-extensions/extensions/superfences/) overrides the default code block behavior in Python Markdown. To make sure `rst-in-md` is properly called, you simply need to specify the extension `pymdownx.superfences`:
 
 ```yaml hl_lines="4"
 markdown_extensions:
