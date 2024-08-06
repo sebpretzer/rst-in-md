@@ -1,11 +1,14 @@
 # Inline Ignore
 
 To use the inline ignore feature, add a comment right above the fenced code block:
-```markdown
+```markdown hl_lines="1" title="ignore.md"
     ```{.rst rst-in-md=false}
     With this comment, this will be ignored by the `rst-in-md` tool.
     ```
+```
 
+whereas normal code blocks will be converted:
+```markdown title="normal.md"
     ```rst
     This will be converted by the `rst-in-md` tool.
     ```

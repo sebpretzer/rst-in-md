@@ -5,7 +5,7 @@ After [installing](./installation.md) the package, any [fenced code block](https
 ## Basic Example
 
 For example, this markdown:
-```markdown
+```markdown title="example.md"
     ```rst
     .. table:: Truth table for "not"
        :widths: auto
@@ -51,7 +51,7 @@ Below are some of the features that are supported.
 
 ### Simple Tables
 
-```markdown
+```markdown title="example.md"
     ```rst
     =====  =====
     A      B
@@ -77,7 +77,7 @@ True   True
 
 ### Grid Tables
 
-```markdown
+```markdown title="example.md"
     ```rst
     +------------------------+------------+----------+----------+
     | Header row, column 1   | Header 2   | Header 3 | Header 4 |
@@ -111,7 +111,7 @@ True   True
 
 ### List Tables
 
-```markdown
+```markdown title="example.md"
     ```rst
     .. list-table:: Title
        :widths: 25 25 50
@@ -147,7 +147,7 @@ True   True
 
 ### Latex math support
 
-```markdown
+```markdown title="example.md"
     ```rst
     .. math::
 
