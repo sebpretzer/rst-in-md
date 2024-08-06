@@ -111,7 +111,18 @@ class RestructuredTextInMarkdownAutoConfigurator(Preprocessor):
         config["custom_fences"] = custom_fences
 
     def run(self, lines: list[str]) -> list[str]:
-        """Deregister `rst-in-md` if `pymdownx.superfences` is installed.
+        """Auto-configure `pymdownx.superfences` if installed.
+
+        This method will check if `pymdownx.superfences` is installed. If it is, it will
+        deregister `rst-in-md`, since `pymdownx.superfences` will handle the fenced code
+        blocks. It will also provide the custom fence configurations needed for
+        `pymdownx.superfences` to properly process the fenced code.
+
+        !!! question "Why is this a preprocessor?"
+
+            This preprocessor will not actually process any markdown, even if it is
+            called for each markdown file. It much be run after all extensions have been
+            initialized.
 
         Args:
             lines (list[str]): Input lines _(required, but not used)_.
@@ -140,9 +151,10 @@ def superfence_formatter(
     This function will convert the reStructuredText to html using the same method as
     the standard python markdown extension.
 
-    !!! note
-        This function is passed a few arguments that are not used. They are required by
-        `pymdownx.superfences`.
+    !!! note "Unused Arguments"
+        This function is passed a few arguments that are not used. It must adhere to
+        [the required signature](https://facelessuser.github.io/pymdown-extensions/extensions/superfences/#formatters)
+        set by `pymdownx.superfences`.
 
     Args:
         source (str): Language of the superfence.
@@ -166,6 +178,18 @@ def superfence_validator(
     md: Markdown,  # noqa: ARG001
 ) -> bool:
     """Validate that the superfence should be processed.
+
+    This function will validate that the superfence should be processed by `rst-in-md`.
+    This includes:
+
+    * Checking if the language is supported.
+    * Checking if the `rst-in-md` attribute is set to `false` or not.
+    * Checking if any options or attributes are passed.
+
+    !!! note "Unused Arguments"
+        `md` is passed to this function but is not used. It must adhere to
+        [the required signature](https://facelessuser.github.io/pymdown-extensions/extensions/superfences/#validators)
+        set by `pymdownx.superfences`.
 
     Args:
         language (str): Language of the superfence.
