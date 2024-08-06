@@ -5,7 +5,7 @@ After [installing](./installation.md) the package, any [fenced code block](https
 ## Basic Example
 
 For example, this markdown:
-```markdown title="example.md"
+```markdown title="markdown.md"
     ```rst
     .. table:: Truth table for "not"
        :widths: auto
@@ -39,6 +39,8 @@ Will be converted to this `reStructuredText`:
     * `restructuredtext`
     * `rest`
 
+    For example, you can replace `#!markdown ```rst` with `#!markdown ```rest` or `#!markdown ```restructuredtext`
+
 You can also [ignore specific code blocks](./inline_ignore.md) if you want them rendered the normal way.
 
 ## Supported Features
@@ -51,7 +53,7 @@ Below are some of the features that are supported.
 
 ### Simple Tables
 
-```markdown title="example.md"
+```markdown title="markdown.md"
     ```rst
     =====  =====
     A      B
@@ -77,7 +79,7 @@ True   True
 
 ### Grid Tables
 
-```markdown title="example.md"
+```markdown title="markdown.md"
     ```rst
     +------------------------+------------+----------+----------+
     | Header row, column 1   | Header 2   | Header 3 | Header 4 |
@@ -111,7 +113,7 @@ True   True
 
 ### List Tables
 
-```markdown title="example.md"
+```markdown title="markdown.md"
     ```rst
     .. list-table:: Title
        :widths: 25 25 50
@@ -147,7 +149,7 @@ True   True
 
 ### Latex math support
 
-```markdown title="example.md"
+```markdown title="markdown.md"
     ```rst
     .. math::
 

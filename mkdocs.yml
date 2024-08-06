@@ -48,7 +48,11 @@ markdown_extensions:
   - attr_list
   - rst_in_md
   - admonition
+  - pymdownx.highlight
+  - pymdownx.inlinehilite
   - pymdownx.superfences
+  - pymdownx.tasklist:
+      custom_checkbox: true
 
 plugins:
   - search

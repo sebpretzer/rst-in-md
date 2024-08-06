@@ -2,10 +2,14 @@
 
 `rst-in-md` is a simple tool to convert [reStructuredText](https://docutils.sourceforge.io/rst.html) within [Markdown](https://daringfireball.net/projects/markdown/), built to extend [Python Markdown](https://python-markdown.github.io/).
 
+- [x] Easy to use, no complex setup required
+- [x] Supports many [reStructuredText elements](./guides/general_usage.md#supported-features)
+- [x] Integrates with [MkDocs](./guides/integrations.md#mkdocs)
+- [x] Integrates with [PyMdown Extensions](./guides/integrations.md#pymdown-extensions-superfences)
 
-You can make full use of more complex `reStructuredText` elements, and they will be rendered correctly in the final output. Turn something like this:
+Turn this:
 
-```markdown
+```markdown title="markdown.md"
    ```rst
    +------------------------+------------+----------+----------+
    | Header row, column 1   | Header 2   | Header 3 | Header 4 |
