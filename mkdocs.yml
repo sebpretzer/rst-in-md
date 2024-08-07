@@ -55,6 +55,7 @@ markdown_extensions:
       custom_checkbox: true
 
 plugins:
+  - git-revision-date-localized
   - search
   - mkdocstrings:
       handlers:
