@@ -9,7 +9,8 @@ from rst_in_md.superfence import RestructuredTextInMarkdownAutoConfigurator
 class RestructuredTextInMarkdown(Extension):
     """Extension to convert restructured text to html in markdown."""
 
-    def _pymdownx_installed(self) -> bool:
+    @staticmethod
+    def _pymdownx_installed() -> bool:
         try:
             import pymdownx.superfences  # noqa: F401
         except ImportError:
