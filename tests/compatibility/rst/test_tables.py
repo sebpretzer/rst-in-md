@@ -1,7 +1,6 @@
 # ruff: noqa: E501
 from textwrap import dedent
 
-import pytest
 from bs4 import BeautifulSoup
 
 from rst_in_md import rst_to_soup
@@ -83,13 +82,10 @@ def test_grid_table():
     assert rst_soup.prettify() == soup.prettify()
 
 
-@pytest.fixture()
-def list_table_factory():
-    def _list_table_factory(title: str = "", widths: str = "auto") -> str:
-        # https://docutils.sourceforge.io/docs/ref/rst/directives.html#list-table
-        text = f"""
-.. list-table:: {title}
-  :widths: {widths}
+def test_auto_widths_table():
+    text = """
+.. list-table::
+  :widths: auto
   :header-rows: 1
 
   * - Treat
@@ -104,14 +100,9 @@ def list_table_factory():
   * - Gannet Ripple
     - 1.99
     - On a stick!
-        """
-        return dedent(text).strip("\n")
+    """
 
-    return _list_table_factory
-
-
-def test_auto_widths_table(list_table_factory):
-    rst_soup = rst_to_soup(list_table_factory(widths="auto"))
+    rst_soup = rst_to_soup(text)
 
     soup = BeautifulSoup(
         """
@@ -132,8 +123,27 @@ def test_auto_widths_table(list_table_factory):
     assert rst_soup.prettify() == soup.prettify()
 
 
-def test_fixed_widths_table(list_table_factory):
-    rst_soup = rst_to_soup(list_table_factory(widths="15 10 30"))
+def test_fixed_widths_table():
+    text = """
+.. list-table::
+  :widths: 15 10 30
+  :header-rows: 1
+
+  * - Treat
+    - Quantity
+    - Description
+  * - Albatross
+    - 2.99
+    - On a stick!
+  * - Crunchy Frog
+    - 1.49
+    - If we took the bones out, it wouldn't be crunchy, now would it?
+  * - Gannet Ripple
+    - 1.99
+    - On a stick!
+    """
+
+    rst_soup = rst_to_soup(text)
 
     soup = BeautifulSoup(
         """
