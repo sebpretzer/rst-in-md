@@ -21,6 +21,24 @@ def md():
     )
 
 
+def test_auto_config_is_false():
+    md = Markdown(
+        extensions=[
+            "rst_in_md",
+            "attr_list",
+            "fenced_code",
+            "pymdownx.superfences",
+        ],
+        extension_configs={
+            "rst_in_md": {
+                "auto_config": False,
+            },
+        },
+    )
+    assert "rst-in-md" in md.preprocessors
+    assert "rst-in-md-auto-configurator" not in md.preprocessors
+
+
 def test_no_auto_configurator_without_pymdownx():
     # https://stackoverflow.com/a/65034142
     with patch.dict(sys.modules, {k: None for k in sys.modules if "pymdownx" in k}):
@@ -31,6 +49,7 @@ def test_no_auto_configurator_without_pymdownx():
                 "fenced_code",
             ],
         )
+        assert "rst-in-md" in md.preprocessors
         assert "rst-in-md-auto-configurator" not in md.preprocessors
 
 

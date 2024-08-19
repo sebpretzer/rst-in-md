@@ -9,6 +9,16 @@ from rst_in_md.superfence import RestructuredTextInMarkdownAutoConfigurator
 class RestructuredTextInMarkdown(Extension):
     """Extension to convert restructured text to html in markdown."""
 
+    def __init__(self, **kwargs: dict) -> None:
+        """Initialize the RestructuredTextInMarkdown extension."""
+        self.config = {
+            "auto_config": [
+                kwargs.get("auto_config", True),
+                "Enable auto configuration of `pymdownx.superfences` integration.",
+            ],
+        }
+        super().__init__(**kwargs)
+
     @staticmethod
     def _pymdownx_installed() -> bool:
         try:
@@ -44,7 +54,7 @@ class RestructuredTextInMarkdown(Extension):
             27,
         )
 
-        if self._pymdownx_installed():
+        if self._pymdownx_installed() and self.getConfig("auto_config"):
             md.preprocessors.register(
                 RestructuredTextInMarkdownAutoConfigurator(md),
                 "rst-in-md-auto-configurator",
