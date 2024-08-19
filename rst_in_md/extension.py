@@ -9,6 +9,13 @@ from rst_in_md.superfence import RestructuredTextInMarkdownAutoConfigurator
 class RestructuredTextInMarkdown(Extension):
     """Extension to convert restructured text to html in markdown."""
 
+    def _pymdownx_installed(self) -> bool:
+        try:
+            import pymdownx.superfences  # noqa: F401
+        except ImportError:
+            return False
+        return True
+
     def extendMarkdown(self, md: Markdown) -> None:  # noqa: N802
         """Register the RestructuredTextInMarkdownPreProcessor.
 
@@ -29,8 +36,10 @@ class RestructuredTextInMarkdown(Extension):
             "rst-in-md",
             27,
         )
-        md.preprocessors.register(
-            RestructuredTextInMarkdownAutoConfigurator(md),
-            "rst-in-md-auto-configurator",
-            300,
-        )
+
+        if self._pymdownx_installed():
+            md.preprocessors.register(
+                RestructuredTextInMarkdownAutoConfigurator(md),
+                "rst-in-md-auto-configurator",
+                300,
+            )
