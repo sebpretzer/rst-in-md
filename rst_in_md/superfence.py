@@ -5,13 +5,6 @@ from functools import partial
 
 from markdown import Markdown
 from markdown.preprocessors import Preprocessor
-from pymdownx.superfences import (
-    SuperFencesBlockPreprocessor,
-    SuperFencesCodeExtension,
-    _formatter,
-    _test,
-    _validator,
-)
 
 from rst_in_md.conversion import BS4_FORMATTER, LANGUAGES, rst_to_soup
 
@@ -119,6 +112,11 @@ class RestructuredTextInMarkdownAutoConfigurator(Preprocessor):
         Returns:
             bool: If the extension is installed or not.
         """
+        try:
+            from pymdownx.superfences import SuperFencesBlockPreprocessor
+        except ImportError:
+            return False
+
         return isinstance(
             self.md.preprocessors["fenced_code_block"],
             SuperFencesBlockPreprocessor,
@@ -159,7 +157,16 @@ class RestructuredTextInMarkdownAutoConfigurator(Preprocessor):
 
         Returns:
             dict: Dictionary of the superfence for `pymdownx.superfences`.
+
+        Raises:
+            ImportError: pymdown-extensions is not properly installed.
         """
+        try:
+            from pymdownx.superfences import _formatter, _test, _validator
+        except ImportError as e:
+            msg = "pymdown-extensions is not properly installed."
+            raise ImportError(msg) from e
+
         return {
             "name": language,
             "test": partial(_test, test_language=language),
@@ -178,8 +185,15 @@ class RestructuredTextInMarkdownAutoConfigurator(Preprocessor):
         """Add custom fence configs to `pymdownx.superfences`, if not already present.
 
         Raises:
+            ImportError: pymdown-extensions is not properly installed.
             ValueError: SuperFencesCodeExtension not found.
         """
+        try:
+            from pymdownx.superfences import SuperFencesCodeExtension
+        except ImportError as e:
+            msg = "pymdown-extensions is not properly installed."
+            raise ImportError(msg) from e
+
         registered = self.md.registeredExtensions
         extensions = [e for e in registered if isinstance(e, SuperFencesCodeExtension)]
         if len(extensions) != 1:
