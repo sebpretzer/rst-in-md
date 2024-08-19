@@ -9,19 +9,6 @@ from pymdownx.superfences import SuperFencesCodeExtension
 from rst_in_md import superfence_formatter, superfence_validator
 
 
-def test_no_auto_configurator_without_pymdownx(md):
-    # https://stackoverflow.com/a/65034142
-    with patch.dict(sys.modules, {k: None for k in sys.modules if "pymdownx" in k}):
-        md = Markdown(
-            extensions=[
-                "rst_in_md",
-                "attr_list",
-                "fenced_code",
-            ],
-        )
-        assert "rst-in-md-auto-configurator" not in md.preprocessors
-
-
 @pytest.fixture()
 def md():
     return Markdown(
@@ -32,6 +19,19 @@ def md():
             "pymdownx.superfences",
         ],
     )
+
+
+def test_no_auto_configurator_without_pymdownx():
+    # https://stackoverflow.com/a/65034142
+    with patch.dict(sys.modules, {k: None for k in sys.modules if "pymdownx" in k}):
+        md = Markdown(
+            extensions=[
+                "rst_in_md",
+                "attr_list",
+                "fenced_code",
+            ],
+        )
+        assert "rst-in-md-auto-configurator" not in md.preprocessors
 
 
 def test_load_extension_with_pymdownx(md):
