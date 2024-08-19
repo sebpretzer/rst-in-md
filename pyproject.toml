@@ -15,10 +15,10 @@ dependencies = [
     "Markdown >=3.5.0",
     "docutils >=0.21.0",
     "beautifulsoup4 >=4.12.0",
-    "pymdown-extensions >=10.0.0",
 ]
 
 [project.optional-dependencies]
+pymdownx = ["pymdown-extensions >=10.0.0"]
 ci = ["pre-commit >=3.0.0"]
 test = ["pytest >=7.0.0"]
 docs = [

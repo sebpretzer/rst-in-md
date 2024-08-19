@@ -21,4 +21,4 @@ markdown_extensions:
   - pymdownx.superfences
 ```
 
-You can read more about this integration in the [explanation](../explanations/implementation.md#integration-with-pymdown-extensions-superfences) and [reference](../reference/superfence.md#custom-fence).
+You can read more about this integration in the [explanation](../explanations/implementation.md#integration-with-pymdown-extensions-superfences) and [reference](../reference/superfence.md#superfence).
