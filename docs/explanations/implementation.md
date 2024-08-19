@@ -12,7 +12,7 @@ See [general usage](../guides/general_usage.md) for examples.
 
 `rst-in-md` is designed to work with [PyMdown Extensions SuperFences](https://facelessuser.github.io/pymdown-extensions/extensions/superfences/). The SuperFences extension is for the most part superior to the default fenced code block implementation. The SuperFences API allows for [custom fences](https://facelessuser.github.io/pymdown-extensions/extensions/superfences/#custom-fences), like this one.
 
-Usually, `pymdownx.superfences` require custom fences to be specified. However, `rst-in-md` automatically detects that `pymdownx.superfences` is installed and will properly handle the configuration for you. You can find that implemenation in the [auto-configuration reference](../reference/superfence.md#auto-configuration).
+Usually, `pymdownx.superfences` require custom fences to be specified. However, `rst-in-md` automatically detects that `pymdownx.superfences` is installed and will properly handle the configuration for you. You can find that implemenation in the [auto-configuration reference](../reference/superfence.md#rst_in_md.RestructuredTextInMarkdownAutoConfigurator).
 
 ## Stripped HTML Tags
 
