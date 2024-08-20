@@ -24,7 +24,7 @@ markdown_extensions:
 You can read more about this integration in the [explanation](../explanations/implementation.md#integration-with-pymdown-extensions-superfences) and [reference](../reference/superfence.md#superfence).
 
 !!! warning "Auto-Configuration"
-    By installing both `rst-in-md` and `pymdownx.superfences`, you invoke an [auto-configurator](../reference/superfence.md#rst_in_md.RestructuredTextInMarkdownAutoConfigurator) that will remove `rst-in-md` and add the proper custom fences for `pymdownx.superfences`. It is equivalent to the following configuration:
+    By installing both `rst-in-md` and `pymdownx.superfences`, you invoke an [auto-configurator](../reference/superfence.md#rst_in_md.RestructuredTextInMarkdownAutoConfigurator) that will remove `rst-in-md` and add the proper `custom_fences` for `pymdownx.superfences`. It is equivalent to the following configuration:
 
     ```diff
     markdown_extensions:
