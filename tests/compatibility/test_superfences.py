@@ -21,7 +21,7 @@ def md():
     )
 
 
-def test_no_auto_configurator_without_pymdownx():
+def test_auto_configurator_installed_properly():
     # https://stackoverflow.com/a/65034142
     with patch.dict(sys.modules, {k: None for k in sys.modules if "pymdownx" in k}):
         md = Markdown(
@@ -31,12 +31,24 @@ def test_no_auto_configurator_without_pymdownx():
                 "fenced_code",
             ],
         )
+        assert "rst-in-md" in md.preprocessors
         assert "rst-in-md-auto-configurator" not in md.preprocessors
+
+    md = Markdown(
+        extensions=[
+            "attr_list",
+            "fenced_code",
+            "pymdownx.superfences",
+        ],
+    )
+    assert "rst-in-md" not in md.preprocessors
+    assert "rst-in-md-auto-configurator" not in md.preprocessors
 
 
 def test_load_extension_with_pymdownx(md):
+    assert "rst-in-md" in md.preprocessors
+    assert "rst-in-md-auto-configurator" in md.preprocessors
     assert md.preprocessors.get_index_for_name("rst-in-md-auto-configurator") == 0
-    assert md.preprocessors["rst-in-md"]
 
     assert md.preprocessors["fenced_code_block"].config.get("custom_fences", []) == []
 
@@ -77,12 +89,13 @@ def test_load_extension_without_pymdownx(md):
         ],
     )
 
+    assert "rst-in-md" in md.preprocessors
+    assert "rst-in-md-auto-configurator" in md.preprocessors
     assert md.preprocessors.get_index_for_name("rst-in-md-auto-configurator") == 0
-    assert md.preprocessors["rst-in-md"]
 
     md.convert(source="placeholder")
 
-    assert md.preprocessors["rst-in-md"]
+    assert "rst-in-md" in md.preprocessors
 
 
 def test_superfence_inside_admonition(md):
