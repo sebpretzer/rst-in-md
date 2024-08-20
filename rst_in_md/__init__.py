@@ -23,7 +23,7 @@ __all__ = [
 __version__ = "0.0.0"
 
 
-def makeExtension(**kwargs) -> Extension:  # noqa: N802, ANN003
+def makeExtension(**kwargs: dict) -> Extension:  # noqa: N802
     """Return an instance of the RestructuredTextInMarkdown extension.
 
     This function is specified by the markdown package, so that it can properly load the

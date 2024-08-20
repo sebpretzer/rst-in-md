@@ -12,7 +12,7 @@ logger = logging.getLogger(__name__)
 logging.basicConfig(level=logging.INFO)
 
 
-def superfence_formatter(
+def superfence_formatter(  # noqa: D417
     source: str,
     language: str,  # noqa: ARG001
     css_class: str,  # noqa: ARG001
@@ -36,7 +36,6 @@ def superfence_formatter(
         css_class (str): CSS class of the superfence _(required, but not used)_.
         options (dict): Options of the superfence _(required, but not used)_.
         md (Markdown): The markdown instance _(required, but not used)_.
-        **kwargs (dict): Additional arguments _(required, but not used)_.
 
     Returns:
         str: The converted html.
