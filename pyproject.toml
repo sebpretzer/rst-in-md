@@ -2,8 +2,10 @@
 name = "rst-in-md"
 dynamic = ["version"]
 description = "Convert reStructuredText within Markdown to HTML."
-authors = [{name = "Seb Pretzer", email = "24555985+sebpretzer@users.noreply.github.com"}]
-license = {file = "LICENSE"}
+authors = [
+    { name = "Seb Pretzer", email = "24555985+sebpretzer@users.noreply.github.com" },
+]
+license = { file = "LICENSE" }
 readme = "README.md"
 requires-python = ">=3.9,<3.13"
 classifiers = [
@@ -30,7 +32,7 @@ docs = [
 publishing = ["hatch >=1.12.0"]
 
 [project.urls]
-Documentation = "https://sebpretzer.github.io/rst-in-md/"
+Documentation = "https://rst-in-md.pretzer.io/"
 Source = "https://github.com/sebpretzer/rst-in-md"
 
 [build-system]
